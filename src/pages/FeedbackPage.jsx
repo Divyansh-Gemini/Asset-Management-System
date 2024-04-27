@@ -25,7 +25,6 @@ function FeedbackPage() {
     <div className="bg-[#21313C] min-h-screen flex">
       {/* Left Side - Feedback Section */}
       <div className="w-1/2 p-8 flex flex-col ">
-        {/* <h2 className="text-4xl font-bold text-white mb-8">We value your feedback</h2> */}
         <img
           src="assets/images/feedbackImage.png"
           alt="Feedback Image"
@@ -35,8 +34,8 @@ function FeedbackPage() {
 
       {/* Right Side - Feedback Form */}
       <div className="w-1/2 p-8 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold text-white mb-3 ml-72 mt-10">
-          Feedback{" "}
+        <h2 className="text-3xl font-bold text-white mb-3 ml-48 mt-10">
+          Feedback
         </h2>
         <form
           onSubmit={handleSubmit}
