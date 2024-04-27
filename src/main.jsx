@@ -11,6 +11,7 @@ import FeedbackPage from "./pages/FeedbackPage.jsx";
 import AssetsPage from "./pages/AssetsPage.jsx";
 import ReportPage from "./pages/ReportPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
+import ContactUsCard from "./components/ContactUsCard.jsx"
 
 const router = createBrowserRouter([
   {
@@ -41,13 +42,9 @@ const router = createBrowserRouter([
         path: "/feedback",
         element: <FeedbackPage />,
       },
-      // {
-      //   path: "/login",
-      //   element: <LoginPage />,
-      // },
       {
         path: "/contact",
-        element: <h1>Contact Us</h1>,
+        element: <ContactUsCard/>,
       },
     ],
   },

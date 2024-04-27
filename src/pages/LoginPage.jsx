@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom"; 
 const LoginPage = () => {
+  document.body.style.overflow = "hidden"
   return (
     <div className="flex m-5 h-screen overflow-hidden rounded-[35px] rounded-br-[70px] rounded-bl-[70px]">
       {/* Left Side - Background Image */}

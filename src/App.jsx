@@ -3,6 +3,8 @@ import NavBar from "./components/Header/Header";
 import Sidebar from "./components/SideBar/Sidebar";
 
 function App() {
+  
+  document.body.style.overflow = "auto"
   return (
     <>
       <NavBar />
