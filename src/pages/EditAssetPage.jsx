@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const AddAssetPage = () => {
+const EditAssetPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     capacity: "",
@@ -19,7 +19,7 @@ const AddAssetPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await axios.post("http://localhost:5000/api/v1/asset/create-asset", formData);
+    const response = await axios.post(`${window.location.href}`, formData);
 
     if(response.data.success){
      console.log("Asset created successfully")
@@ -99,4 +99,4 @@ const AddAssetPage = () => {
   );
 };
 
-export default AddAssetPage;
+export default EditAssetPage;

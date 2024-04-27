@@ -13,6 +13,7 @@ import ReportPage from "./pages/ReportPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import ContactUsCard from "./components/ContactUsCard.jsx";
 import AddAssetPage from "./pages/AddAssetPage.jsx";
+import EditAssetPage from "./pages/EditAssetPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/add-asset",
         element: <AddAssetPage />,
+      },
+      {
+        path: "/update-asset",
+        element: <EditAssetPage />,
       },
     ],
   },

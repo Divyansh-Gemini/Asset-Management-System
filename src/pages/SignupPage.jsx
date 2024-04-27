@@ -1,6 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 const SignupPage = () => {
+
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: ""
+  })
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData)
+    axios.post('http://localhost:5000/api/v1/user/signup', formData)
+      .then((response) => {
+        if (response.data.success) {
+          window.location.href = "/login"
+        }
+      })
+      .catch((error) => {
+        console.log("Signup failed")
+      })
+  }
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    });
+  }
   return (
     <div className="flex m-5 h-screen overflow-hidden rounded-[35px] rounded-br-[70px] rounded-bl-[70px]">
       {/* Left Side - Background Image */}
@@ -26,7 +55,9 @@ const SignupPage = () => {
               </label>
               <input
                 type="text"
-                id="name"
+                id="username"
+                value={formData.username}
+                onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500"
               />
             </div>
@@ -40,6 +71,8 @@ const SignupPage = () => {
               <input
                 type="email"
                 id="email"
+                value={formData.email}
+                onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500"
               />
             </div>
@@ -53,11 +86,14 @@ const SignupPage = () => {
               <input
                 type="password"
                 id="password"
+                value={formData.password}
+                onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500"
               />
             </div>
             <button
               type="submit"
+              onClick={handleSubmit}
               className="bg-blue-500 mb-3 text-white px-4 w-full py-2 rounded-2xl hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
             >
               SignUp

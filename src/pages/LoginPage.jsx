@@ -1,7 +1,38 @@
 // LoginPage.js
-import React from "react";
+import React, {  useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios'
+
 const LoginPage = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: ""
+  })
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData)
+    axios.post('http://localhost:5000/api/v1/user/login', formData)
+      .then((response) => {
+        if (response.data.success) {
+          window.location.href = "/"
+        }
+        else{
+          alert("Invalid Credentials")
+        }
+      })
+      .catch((error) => {
+        console.log("Login failed")
+      })
+  }
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    });
+  };
   document.body.style.overflow = "hidden";
   return (
     <div className="flex m-5 h-screen overflow-hidden rounded-[35px] rounded-br-[70px] rounded-bl-[70px]">
@@ -30,6 +61,8 @@ const LoginPage = () => {
                 type="text"
                 id="username"
                 className="w-full px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500"
+                value={formData.name}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-6">
@@ -43,11 +76,14 @@ const LoginPage = () => {
                 type="password"
                 id="password"
                 className="w-full px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500"
+                value={formData.password}
+                onChange={handleChange}
               />
             </div>
             <button
               type="submit"
               className="bg-blue-500 mb-3 text-white px-4 w-full py-2 rounded-2xl hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+              onClick={handleSubmit}
             >
               Login
             </button>
