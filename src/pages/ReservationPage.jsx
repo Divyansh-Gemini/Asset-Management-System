@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css"; // CSS for date picker
 import TimePicker from "rc-time-picker";
 import "rc-time-picker/assets/index.css"; // CSS for time picker
 
-const Reservation = () => {
+const ReservationPage = () => {
   const [name, setName] = useState("");
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(null); // Using null as initial time
@@ -108,4 +108,4 @@ const Reservation = () => {
   );
 };
 
-export default Reservation;
+export default ReservationPage;

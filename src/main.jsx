@@ -6,12 +6,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import Dashboard from "./components/Dashboard/Dashboard.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
-import Reservation from "./pages/Reservation.jsx";
+import ReservationPage from "./pages/ReservationPage.jsx";
 import FeedbackPage from "./pages/FeedbackPage.jsx";
 import AssetsPage from "./pages/AssetsPage.jsx";
 import ReportPage from "./pages/ReportPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
-import ContactUsCard from "./components/ContactUsCard.jsx"
+import ContactUsCard from "./components/ContactUsCard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,11 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/report",
-        element: <ReportPage/>,
+        element: <ReportPage />,
       },
       {
         path: "/reservations",
-        element: <Reservation />,
+        element: <ReservationPage />,
       },
       {
         path: "/feedback",
@@ -44,18 +44,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <ContactUsCard/>,
+        element: <ContactUsCard />,
       },
     ],
   },
   {
     path: "/login",
-    element: <LoginPage/>
+    element: <LoginPage />,
   },
   {
     path: "/signup",
-    element: <SignupPage/>
-  }
+    element: <SignupPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

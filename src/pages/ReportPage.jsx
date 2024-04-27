@@ -54,7 +54,11 @@ const ReportPage = () => {
             <p className="mb-4">{assetDetails.description}</p>
             <p className="mb-4">
               Available:{" "}
-              <span className={assetDetails.available ? "text-green-600" : "text-red-600"}>
+              <span
+                className={
+                  assetDetails.available ? "text-green-600" : "text-red-600"
+                }
+              >
                 {assetDetails.available ? "Yes" : "No"}
               </span>
             </p>

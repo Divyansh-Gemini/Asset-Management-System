@@ -14,9 +14,6 @@ const HomePage = () => {
         <NavigationCard text="Reservations" href="/reservations" />
         <NavigationCard text="Feedback" href="/feedback" />
       </div>
-
-      {/* <Heading text="Dashboard" />
-      <Dashboard /> */}
     </section>
   );
 };
