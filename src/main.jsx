@@ -12,6 +12,7 @@ import AssetsPage from "./pages/AssetsPage.jsx";
 import ReportPage from "./pages/ReportPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import ContactUsCard from "./components/ContactUsCard.jsx";
+import AddAssetPage from "./pages/AddAssetPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -54,9 +55,12 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignupPage />,
       },
+      {
+        path: "/add-asset",
+        element: <AddAssetPage />,
+      },
     ],
   },
-  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
