@@ -6,6 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import Dashboard from "./components/Dashboard/Dashboard.jsx";
 import Login from "./pages/LoginPage.jsx";
+import Reservation from "./pages/Reservation.jsx";
+import FeedbackPage from "./pages/FeedbackPage.jsx";
+import AssetsPage from "./pages/AssetsPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/assets",
-        element: <h1>Assets</h1>,
+        element: <AssetsPage />,
       },
       {
         path: "/report",
@@ -30,11 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/reservations",
-        element: <h1>Reservations</h1>,
+        element: <Reservation />,
       },
       {
         path: "/feedback",
-        element: <h1>Feedback</h1>,
+        element: <FeedbackPage />,
       },
       {
         path: "/login",

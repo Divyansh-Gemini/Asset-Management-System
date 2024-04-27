@@ -35,11 +35,11 @@ const Reservation = () => {
   return (
     <div className="bg-[#21313C] h-screen">
       <div className=" p-10 bg-[#21313C]">
-        <h2 className="text-2xl font-bold mb-4 text-center text-red-600">
+        {/* <h2 className="text-2xl font-bold mb-4 text-center text-red-600">
           Reservation
-        </h2>
+        </h2> */}
         <h2 className="text-2xl font-bold mb-4 text-center text-white">
-          Make a Reservation
+          Reserve Asset
         </h2>
         <img
           src="\assets\images\design.png"
@@ -61,10 +61,7 @@ const Reservation = () => {
           <h2 className="text-2xl font-bold mb-4 text-white">Enter Details</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label
-                htmlFor="name"
-                className="block text-white font-bold mb-2"
-              >
+              <label htmlFor="name" className="block text-white font-bold mb-2">
                 Name
               </label>
               <input
@@ -77,10 +74,7 @@ const Reservation = () => {
               />
             </div>
             <div className="mb-4">
-              <label
-                htmlFor="date"
-                className="block text-white font-bold mb-2"
-              >
+              <label htmlFor="date" className="block text-white font-bold mb-2">
                 Date
               </label>
               <DatePicker
@@ -93,10 +87,7 @@ const Reservation = () => {
               />
             </div>
             <div className="mb-4">
-              <label
-                htmlFor="time"
-                className="block text-white font-bold mb-2"
-              >
+              <label htmlFor="time" className="block text-white font-bold mb-2">
                 Time
               </label>
               <TimePicker
