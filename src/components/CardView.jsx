@@ -21,7 +21,7 @@ const CardView = () => {
   }
   const handleDelete = (id) => {
     axios.patch(`http://localhost:5000/api/v1/asset/delete-asset/${id}`)
-    window.location.reload()
+    // window.location.reload()
   }
 
   return (
@@ -41,7 +41,7 @@ const CardView = () => {
                   {asset.description}
                 </p>
                 <p className="text-gray-700 font-bold mt-2">Capacity: {asset.capacity}</p>
-                <p className="text-gray-700 font-bold">Availability: {asset.available_unit}</p>
+                <p className="text-gray-700 font-bold">Availability: Yes</p>
               </div>
             </div>
 

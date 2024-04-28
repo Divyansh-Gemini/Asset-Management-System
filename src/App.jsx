@@ -8,6 +8,7 @@ function App() {
     location.pathname !== "/login" && location.pathname !== "/signup";
 
   document.body.style.overflow = "auto";
+
   return (
     <>
       {isFullScreen && <NavBar />}

@@ -1,28 +1,37 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate, useRoutes } from "react-router-dom";
 
 const AddAssetPage = () => {
+  // const router = useRoutes();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     capacity: "",
     category: "",
-    description: ""
+    description: "",
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await axios.post("http://localhost:5000/api/v1/asset/create-asset", formData);
+    const response = await axios.post(
+      "http://localhost:5000/api/v1/asset/create-asset",
+      formData
+    );
 
-    if(response.data.success){
-     console.log("Asset created successfully")
+    if (response.data.success) {
+      console.log("Asset created successfully");
+      // router.push("/assets");
+      navigate("/assets");
     }
   };
 

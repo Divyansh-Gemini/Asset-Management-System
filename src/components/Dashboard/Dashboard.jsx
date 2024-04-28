@@ -3,34 +3,29 @@ import Chart from "./Chart";
 
 const Dashboard = () => {
   return (
-    <div className="">
-      <div className="flex justify-between">
-        <Chart
-          title="ColumnChart"
-          width={700}
-          height={400}
-          src="https://charts.mongodb.com/charts-project-0-usumc/embed/charts?id=34971c88-5c8c-4dfc-a9da-d1408a5af85e&maxDataAge=3600&theme=dark&autoRefresh=true"
-        />
+    <div className="flex flex-col gap-10">
+      <div className="flex gap-10">
+        <iframe
+          width="640"
+          height="480"
+          className="rounded-lg border border-gray-500 shadow-lg"
+          src="https://charts.mongodb.com/charts-project-0-nyxxcpd/embed/charts?id=662d633a-3906-4bb9-8840-7cfdb4facc02&maxDataAge=60&theme=dark&autoRefresh=true"
+        ></iframe>
 
-        <Chart
-          title="PieChart"
-          width={400}
-          height={400}
-          src="https://charts.mongodb.com/charts-project-0-usumc/embed/charts?id=49011550-3f5c-4962-a9ef-6212e5fbe441&maxDataAge=3600&theme=dark&autoRefresh=true"
-        />
+        <iframe
+          width="640"
+          height="480"
+          className="rounded-lg border border-gray-500 shadow-lg"
+          src="https://charts.mongodb.com/charts-project-0-nyxxcpd/embed/charts?id=662d63b4-820f-4fdc-8a0f-a35fecf1900b&maxDataAge=60&theme=dark&autoRefresh=true"
+        ></iframe>
       </div>
-      <br />
 
-      <div>
-        <Chart
-          title="BarChart"
-          width={450}
-          height={240}
-          src="https://charts.mongodb.com/charts-project-0-usumc/embed/charts?id=85709959-3971-4317-9285-50e1c87f1317&maxDataAge=3600&theme=dark&autoRefresh=true"
-        />
-
-        <br />
-      </div>
+      <iframe
+        width="640"
+        height="480"
+        className="rounded-lg border border-gray-500 shadow-lg"
+        src="https://charts.mongodb.com/charts-project-0-nyxxcpd/embed/charts?id=662d6542-da2c-48c6-858a-982128fbf167&maxDataAge=60&theme=dark&autoRefresh=true"
+      ></iframe>
     </div>
   );
 };

@@ -1,24 +1,32 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function FeedbackPage() {
   const [email, setEmail] = useState("");
   const [rating, setRating] = useState(0);
   const [feedbackType, setFeedbackType] = useState("");
   const [feedbackDetails, setFeedbackDetails] = useState("");
+  const [submittedData, setSubmittedData] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", {
+    const formData = {
       email,
       rating,
       feedbackType,
       feedbackDetails,
-    });
+    };
+    console.log("Form submitted:", formData);
+    setSubmittedData(formData);
   };
 
   const handleRatingChange = (value) => {
     setRating(value);
+  };
+
+  const getStars = (rating) => {
+    let stars = "";
+    for (let i = 0; i < rating; i++) stars += "★";
+    return stars;
   };
 
   return (
@@ -94,6 +102,16 @@ function FeedbackPage() {
             Submit
           </button>
         </form>
+        {submittedData && (
+          <div className="mt-10 p-4 bg-white rounded-md">
+            <h2 className="text-2xl font-bold mb-2">{submittedData.email}</h2>
+            <p>Feedback Type: {submittedData.feedbackType}</p>
+            <p>Feedback Details: {submittedData.feedbackDetails}</p>
+            <p className="text-yellow-600 text-3xl">
+              {getStars(submittedData.rating)}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
