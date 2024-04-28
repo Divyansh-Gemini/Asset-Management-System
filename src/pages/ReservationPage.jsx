@@ -1,32 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; // CSS for date picker
 import TimePicker from "rc-time-picker";
 import "rc-time-picker/assets/index.css"; // CSS for time picker
+import axios from 'axios'
+import Cookies from 'universal-cookie'
 
 const ReservationPage = () => {
+  const cookie = new Cookies()
   const [name, setName] = useState("");
+  const [assetId, setAssetId] = useState("");
   const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState(null); // Using null as initial time
+  const [duration, setDuration] = useState(null); // Using null as initial time
   const [isClicked, setIsClicked] = useState(false); // State for button click effect
+
+  useEffect(() => {
+    setAssetId(window.location.href.split('?')[1])
+  }, []);
+
+
 
   const handleDateChange = (date) => {
     setDate(date);
   };
 
   const handleTimeChange = (time) => {
-    setTime(time);
+    console.log("timeing",time)
+    setDuration(time);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Name:", name);
-    console.log("Date:", date);
-    console.log("Time:", time && time.format("HH:mm"));
+
     // Set button click effect
     setIsClicked(true);
-    // Reset button click effect after 0.3 seconds
+    const userId = cookie.get("userId")
+    
+
+    const response = await axios.post(`http://localhost:5000/api/v1/reservations/${assetId}`,{
+      userId,
+      date,
+      duration
+    })
+
+    console.log(response)
     setTimeout(() => {
       setIsClicked(false);
     }, 300);
@@ -85,18 +102,17 @@ const ReservationPage = () => {
               Time
             </label>
             <TimePicker
-              id="time"
+              id="duration"
               className="w-full px-4 py-2 mb-4 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#E73361] focus:border-transparent"
-              value={time}
+              value={duration}
               onChange={handleTimeChange}
               required
             />
           </div>
           <button
             type="submit"
-            className={`w-full bg-gradient-to-r from-[#E73361] to-[#F3564A] text-white px-4 py-2 rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#E73361] focus:border-transparent transition duration-300 ${
-              isClicked && "transform scale-95"
-            }`}
+            className={`w-full bg-gradient-to-r from-[#E73361] to-[#F3564A] text-white px-4 py-2 rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#E73361] focus:border-transparent transition duration-300 ${isClicked && "transform scale-95"
+              }`}
             onMouseDown={() => setIsClicked(true)} // Set button click effect on mouse down
             onMouseUp={() => setIsClicked(false)} // Reset button click effect on mouse up
           >
