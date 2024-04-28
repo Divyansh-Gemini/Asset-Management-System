@@ -1,27 +1,17 @@
 import React, { useState } from "react";
+import axios from 'axios'
 
 const ReportPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [assetDetails, setAssetDetails] = useState(null);
 
   // Function to fetch asset details based on search query
-  const fetchAssetDetails = () => {
-    // Fetch asset details based on searchQuery
-    // Example API call:
-    // fetch(`api/assetDetails?search=${searchQuery}`)
-    //   .then(response => response.json())
-    //   .then(data => setAssetDetails(data))
-    //   .catch(error => console.error("Error fetching asset details:", error));
+  const fetchAssetDetails = async () => {
+      const response = await axios.get(`http://localhost:5000/api/v1/asset/get-asset-name/${searchQuery}`)
 
-    // Mock data for demonstration
-    const mockAssetDetails = {
-      name: "Asset Name",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      available: true,
-      additionalInfo: "Additional information about the asset.",
-      // Other data...
-    };
-    setAssetDetails(mockAssetDetails);
+      console.log(response.data.asset)
+    
+    setAssetDetails(response.data.asset);
   };
 
   const handleSearch = () => {
@@ -51,36 +41,19 @@ const ReportPage = () => {
         {assetDetails && (
           <div className="bg-white shadow-md rounded-md p-8 text-black">
             <h2 className="text-2xl font-bold mb-4">{assetDetails.name}</h2>
-            <p className="mb-4">{assetDetails.description}</p>
+            <p className="mb-4">Description: {assetDetails.description}</p>
             <p className="mb-4">
               Available:{" "}
               <span
                 className={
-                  assetDetails.available ? "text-green-600" : "text-red-600"
+                  assetDetails.isAvailable ? "text-green-600" : "text-red-600"
                 }
               >
-                {assetDetails.available ? "Yes" : "No"}
+                {assetDetails.isAvailable ? "Yes" : "No"}
               </span>
             </p>
-            <div className="mb-4">
-              {/* <PieChart
-                data={[
-                  { title: "Used", value: 20, color: "#E73361" },
-                  { title: "Available", value: 80, color: "#F3564A" },
-                ]}
-                radius={40}
-                lineWidth={25}
-                animate
-                label={({ dataEntry }) => `${Math.round(dataEntry.percentage)}%`}
-                labelStyle={(index) => ({
-                  fill: index.data.color,
-                  fontSize: "8px",
-                  fontFamily: "sans-serif",
-                })}
-              /> */}
-              heyyyy
-            </div>
-            <p>{assetDetails.additionalInfo}</p>
+           
+            <p>Capacity: {assetDetails.capacity}</p>
             {/* Additional information */}
           </div>
         )}

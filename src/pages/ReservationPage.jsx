@@ -44,7 +44,7 @@ const ReservationPage = () => {
       }
     );
 
-    console.log(response);
+    console.log(response)
     setTimeout(() => {
       setIsClicked(false);
     }, 300);
