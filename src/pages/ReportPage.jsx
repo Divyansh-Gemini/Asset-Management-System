@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from 'axios'
+import axios from "axios";
 
 const ReportPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -7,10 +7,12 @@ const ReportPage = () => {
 
   // Function to fetch asset details based on search query
   const fetchAssetDetails = async () => {
-      const response = await axios.get(`http://localhost:5000/api/v1/asset/get-asset-name/${searchQuery}`)
+    const response = await axios.get(
+      `http://localhost:5000/api/v1/asset/get-asset-name/${searchQuery}`
+    );
 
-      console.log(response.data.asset)
-    
+    console.log(response.data.asset);
+
     setAssetDetails(response.data.asset);
   };
 
@@ -52,9 +54,16 @@ const ReportPage = () => {
                 {assetDetails.isAvailable ? "Yes" : "No"}
               </span>
             </p>
-           
+
             <p>Capacity: {assetDetails.capacity}</p>
-            {/* Additional information */}
+
+            <iframe
+              // style="background: #21313C;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);"
+              className="rounded-lg border border-gray-500 shadow-lg bg-bg"
+              width="640"
+              height="480"
+              src="https://charts.mongodb.com/charts-project-0-nyxxcpd/embed/charts?id=662ded15-afb5-4cfb-83b6-ee72b1f70d20&maxDataAge=60&theme=dark&autoRefresh=true"
+            ></iframe>
           </div>
         )}
       </div>
