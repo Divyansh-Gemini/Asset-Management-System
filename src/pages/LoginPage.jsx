@@ -13,7 +13,9 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData)
-    axios.post('http://localhost:5000/api/v1/user/login', formData)
+    axios.post('http://localhost:5000/api/v1/user/login', formData,{
+      withCredentials:true
+    })
       .then((response) => {
         if (response.data.success) {
           window.location.href = "/"

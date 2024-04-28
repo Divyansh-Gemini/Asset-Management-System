@@ -3,6 +3,7 @@ import axios from "axios";
 
 const EditAssetPage = () => {
   const [formData, setFormData] = useState({
+    assetid:"",
     name: "",
     capacity: "",
     category: "",
@@ -18,8 +19,12 @@ const EditAssetPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const pathUrl = window.location.href
 
-    const response = await axios.post(`${window.location.href}`, formData);
+    const pathname = window.location.pathname
+    const assetId = pathUrl.split("?")[1]
+    formData.assetid = assetId
+    const response = await axios.patch(`http://localhost:5000/api/v1/asset${pathname.split("?")[0]}`, formData);
 
     if(response.data.success){
      console.log("Asset created successfully")

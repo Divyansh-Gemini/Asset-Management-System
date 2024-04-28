@@ -17,11 +17,15 @@ const CardView = () => {
   }, []);
 
   const handleEdit = (id) => {
-    window.location.href = `/update-asset`
+    window.location.href = `/update-asset?${id}`
   }
   const handleDelete = (id) => {
     axios.patch(`http://localhost:5000/api/v1/asset/delete-asset/${id}`)
     // window.location.reload()
+  }
+
+  const handleReserve = (id)=>{
+    window.location.href = `/reservations?${id}`
   }
 
   return (
@@ -56,7 +60,9 @@ const CardView = () => {
               >
                 Delete
               </button>
-              <button className="bg-gradient-to-r from-[#E73361] to-[#F3564A] rounded-md hover:bg-opacity-90 focus:outline-none hover:ring-2 hover:ring-[#E73361] hover:border-transparent text-white font-bold  w-24">
+              <button 
+                 onClick={()=>{handleReserve(asset._id)}}
+              className="bg-gradient-to-r from-[#E73361] to-[#F3564A] rounded-md hover:bg-opacity-90 focus:outline-none hover:ring-2 hover:ring-[#E73361] hover:border-transparent text-white font-bold  w-24">
                 Reserve
               </button>
             </div>
