@@ -3,47 +3,48 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; // CSS for date picker
 import TimePicker from "rc-time-picker";
 import "rc-time-picker/assets/index.css"; // CSS for time picker
-import axios from 'axios'
-import Cookies from 'universal-cookie'
+import axios from "axios";
+import Cookies from "universal-cookie";
 
 const ReservationPage = () => {
-  const cookie = new Cookies()
+  const cookie = new Cookies();
   const [name, setName] = useState("");
   const [assetId, setAssetId] = useState("");
   const [date, setDate] = useState(new Date());
   const [duration, setDuration] = useState(null); // Using null as initial time
+  const [time, setTime] = useState("10:00"); // Using null as initial time
   const [isClicked, setIsClicked] = useState(false); // State for button click effect
 
   useEffect(() => {
-    setAssetId(window.location.href.split('?')[1])
+    setAssetId(window.location.href.split("?")[1]);
   }, []);
-
-
 
   const handleDateChange = (date) => {
     setDate(date);
   };
 
   const handleTimeChange = (time) => {
-    console.log("timeing",time)
+    console.log("timeing", time);
     setDuration(time);
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Set button click effect
     setIsClicked(true);
-    const userId = cookie.get("userId")
-    
+    const userId = cookie.get("userId");
 
-    const response = await axios.post(`http://localhost:5000/api/v1/reservations/${assetId}`,{
-      userId,
-      date,
-      duration
-    })
+    const response = await axios.post(
+      `http://localhost:5000/api/v1/reservations/${assetId}`,
+      {
+        userId,
+        date,
+        duration,
+      }
+    );
 
-    console.log(response)
+    console.log(response);
     setTimeout(() => {
       setIsClicked(false);
     }, 300);
@@ -101,18 +102,27 @@ const ReservationPage = () => {
             <label htmlFor="time" className="block text-white font-bold mb-2">
               Time
             </label>
-            <TimePicker
+            {/* <TimePicker
               id="duration"
               className="w-full px-4 py-2 mb-4 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#E73361] focus:border-transparent"
               value={duration}
               onChange={handleTimeChange}
               required
+            /> */}
+            <input
+              type="time"
+              id="time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              className="w-full px-4 py-2 mb-4 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#E73361] focus:border-transparent"
+              required
             />
           </div>
           <button
             type="submit"
-            className={`w-full bg-gradient-to-r from-[#E73361] to-[#F3564A] text-white px-4 py-2 rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#E73361] focus:border-transparent transition duration-300 ${isClicked && "transform scale-95"
-              }`}
+            className={`w-full bg-gradient-to-r from-[#E73361] to-[#F3564A] text-white px-4 py-2 rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#E73361] focus:border-transparent transition duration-300 ${
+              isClicked && "transform scale-95"
+            }`}
             onMouseDown={() => setIsClicked(true)} // Set button click effect on mouse down
             onMouseUp={() => setIsClicked(false)} // Reset button click effect on mouse up
           >
